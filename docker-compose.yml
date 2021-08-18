@@ -1,0 +1,11 @@
+version: "3"
+services:
+  sample:
+    build: .
+    depends_on:
+      - bigtable
+    environment:
+      - BIGTABLE_EMULATOR_HOST=bigtable:8086
+  bigtable:
+    command: gcloud beta emulators bigtable start --host-port=0.0.0.0:8086
+    image: google/cloud-sdk:latest
